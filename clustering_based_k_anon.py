@@ -334,8 +334,6 @@ def clustering_oka(data, k=25):
         record = data.pop()
         index = find_best_cluster_iloss(record, can_clusters)
         can_clusters[index].add_record(record)
-        print(index)
-        print(can_clusters)
     # pdb.set_trace()
     print("OUTSIDE DATA LENGHT, it is zeroooo now")
     residual = []

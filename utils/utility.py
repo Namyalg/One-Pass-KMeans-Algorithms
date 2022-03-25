@@ -4,7 +4,7 @@ public functions
 
 # !/usr/bin/env python
 # coding=utf-8
-
+from functools import cmp_to_key
 
 def cmp_str(element1, element2):
     """
@@ -39,6 +39,7 @@ def list_to_str(value_list, cmpfun=cmp_str, sep=';'):
     """
     temp = value_list[:]
     temp.sort(cmp=cmpfun)
+    temp = sorted(temp, key=cmp_to_key(cmp_str))
     return sep.join(temp)
 
 

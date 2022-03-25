@@ -1,0 +1,16 @@
+Assoc-acdm;associatedegree;skilldevelopment;professional;educated
+Assoc-voc;associatedegree;skilldevelopment;professional;educated
+Some-college;skilldevelopment;professional;educated
+Bachelors;degreeholder;professional;educated
+Masters;degreeholder;professional;educated
+Doctorate;degreeholder;professional;educated
+1st-4th;primary;school;educated
+5th-6th;primary;school;educated
+7th-8th;middle;school;educated
+9th;secondary;school;educated
+10th;secondary;school;educated
+11th;highersecondary;school;educated
+12th;highersecondary;school;educated
+HS-grad;postschool;school;educated
+Prof-school;postschool;school;educated
+Preschool;school;educated

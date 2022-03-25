@@ -26,8 +26,8 @@ ATT_NAMES = ['age', 'workclass', 'final_weight', 'education',
 # age and education levels are treated as numeric attributes
 # only matrial_status and workclass has well defined generalization hierarchies.
 # other categorical attributes only have 2-level generalization hierarchies.
-QI_INDEX = [0, 1, 3, 12, 14]
-IS_CAT = [False, True, True, False, True]
+QI_INDEX = [0, 1, 3, 12]
+IS_CAT = [False, True, True, False]
 SA_INDEX = -1
 
 __DEBUG = False
@@ -39,6 +39,7 @@ def read_data():
     read microda for *.txt and return read data
     """
     QI_num = len(QI_INDEX)
+    print("NUMBER OF QIDS ARE ", QI_num)
     data = []
     numeric_dict = []
     for i in range(QI_num):
@@ -75,6 +76,7 @@ def read_data():
             #sort_value.sort(key=cmp_str)
             pickle.dump((numeric_dict[i], sort_value), static_file)
             static_file.close()
+    print(data)
     return data
 
 

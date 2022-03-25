@@ -1,8 +1,8 @@
-Never-worked;notreleased
-Self-emp-not-inc;independent;withpay;worked;notreleased
-Self-emp-inc;independent;withpay;worked;notreleased
-Private;nonindependent;withpay;worked;notreleased
-State-gov;gov;nonindependent;withpay;worked;notreleased
-Federal-gov;gov;nonindependent;withpay;worked;notreleased
-Local-gov;gov;nonindependent;withpay;worked;notreleased
-Without-pay;neverworked;notreleased
+Never-worked;*
+Self-emp-not-inc;independent;withpay;worked;*
+Self-emp-inc;independent;withpay;worked;*
+Private;nonindependent;withpay;worked;*
+State-gov;gov;nonindependent;withpay;worked;*
+Federal-gov;gov;nonindependent;withpay;worked;*
+Local-gov;gov;nonindependent;withpay;worked;*
+Without-pay;neverworked;*

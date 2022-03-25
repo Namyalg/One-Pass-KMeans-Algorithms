@@ -337,23 +337,25 @@ def clustering_oka(data, k=25):
     # pdb.set_trace()
     print("OUTSIDE DATA LENGHT, it is zeroooo now")
     residual = []
-    for cluster in can_clusters:
-        if len(cluster) < k:
-            less_clusters.append(cluster)
-        else:
-            if len(cluster) > k:
-                adjust_cluster(cluster, residual, k)
-            clusters.append(cluster)
-    while len(residual) > 0:
-        record = residual.pop()
-        if len(less_clusters) > 0:
-            index = find_best_cluster_iloss(record, less_clusters)
-            less_clusters[index].add_record(record)
-            if less_clusters[index] >= k:
-                clusters.append(less_clusters.pop(index))
-        else:
-            index = find_best_cluster_iloss(record, clusters)
-            clusters[index].add_record(record)
+    print("RESIDUAL IS " )
+    print(residual)
+#     for cluster in can_clusters:
+#         if len(cluster) < k:
+#             less_clusters.append(cluster)
+#         else:
+#             if len(cluster) > k:
+#                 adjust_cluster(cluster, residual, k)
+#             clusters.append(cluster)
+#     while len(residual) > 0:
+#         record = residual.pop()
+#         if len(less_clusters) > 0:
+#             index = find_best_cluster_iloss(record, less_clusters)
+#             less_clusters[index].add_record(record)
+#             if less_clusters[index] >= k:
+#                 clusters.append(less_clusters.pop(index))
+#         else:
+#             index = find_best_cluster_iloss(record, clusters)
+#             clusters[index].add_record(record)
     return clusters
 
 

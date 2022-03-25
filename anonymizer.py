@@ -29,7 +29,7 @@ def write_to_file(result):
     """
     write the anonymized result to anonymized.data
     """
-    with open("result/anonymized.data", "w") as output:
+    with open("anonymized.data", "w") as output:
         for r in result:
             output.write(';'.join(map(extend_result, r)) + '\n')
 

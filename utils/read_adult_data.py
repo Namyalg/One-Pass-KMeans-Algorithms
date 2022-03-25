@@ -14,7 +14,8 @@ from models.gentree import GenTree
 from models.numrange import NumRange
 from utils.utility import cmp_str
 import pickle
-
+from functools import cmp_to_key
+# sorted(mylist, key=cmp_to_key(compare))
 import pdb
 
 ATT_NAMES = ['age', 'workclass', 'final_weight', 'education',
@@ -70,7 +71,8 @@ def read_data():
         if IS_CAT[i] is False:
             static_file = open('data/adult_' + ATT_NAMES[QI_INDEX[i]] + '_static.pickle', 'wb')
             sort_value = list(numeric_dict[i].keys())
-            sort_value.sort(cmp=cmp_str)
+            sort_value = sorted(sort_value, key=cmp_to_key(cmp_str))
+            #sort_value.sort(key=cmp_str)
             pickle.dump((numeric_dict[i], sort_value), static_file)
             static_file.close()
     return data

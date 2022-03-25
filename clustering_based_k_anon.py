@@ -12,6 +12,7 @@ import random
 import time
 import operator
 import pdb
+from functools import cmp_to_key
 
 
 __DEBUG = False
@@ -210,7 +211,9 @@ def generalization(record1, record2):
             if len(split_number) == 1:
                 gen.append(split_number[0])
             else:
-                split_number.sort(cmp=cmp_str)
+                #split_number.sort(cmp=cmp_str)
+                #split_number = sorted(split_number, key=cmp_str)
+                split_number = sorted(split_number, key=cmp_to_key(cmp_str))
                 gen.append(split_number[0] + ',' + split_number[-1])
         else:
             gen.append(get_LCA(i, record1[i], record2[i]))
@@ -302,7 +305,7 @@ def adjust_cluster(cluster, residual, k):
     for i, t in enumerate(cluster.member):
         dist = r_distance(center, t)
         dist_dict[i] = dist
-    sorted_dict = sorted(dist_dict.iteritems(), key=operator.itemgetter(1))
+    sorted_dict = sorted(dist_dict.items(), key=operator.itemgetter(1))
     need_adjust_index = [t[0] for t in sorted_dict[k:]]
     need_adjust = [cluster.member[t] for t in need_adjust_index]
     residual.extend(need_adjust)
@@ -320,7 +323,8 @@ def clustering_oka(data, k=25):
     can_clusters = []
     less_clusters = []
     # randomly choose seed and find k-1 nearest records to form cluster with size k
-    seed_index = random.sample(range(len(data)), len(data) / k)
+    print(range(len(data)))
+    seed_index = random.sample(range(len(data)), int(len(data) / k))
     for index in seed_index:
         record = data[index]
         can_clusters.append(Cluster([record], record))
@@ -330,7 +334,10 @@ def clustering_oka(data, k=25):
         record = data.pop()
         index = find_best_cluster_iloss(record, can_clusters)
         can_clusters[index].add_record(record)
+        print(index)
+        print(can_clusters)
     # pdb.set_trace()
+    print("OUTSIDE DATA LENGHT, it is zeroooo now")
     residual = []
     for cluster in can_clusters:
         if len(cluster) < k:

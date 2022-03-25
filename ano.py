@@ -74,7 +74,7 @@ def get_result_k(att_trees, data, type_alg):
     all_rtime = []
     # for k in range(50,100,50):
     # for k in [50,100,150,200,250,300,350,400,450,500]:
-    for k in [4, 5, 50]:
+    for k in [4]:
         print('#' * 30)
         print("K=%d" % k)
         _, eval_result = clustering_based_k_anon(att_trees, data, type_alg, k)

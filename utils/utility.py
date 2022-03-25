@@ -10,6 +10,12 @@ def cmp_str(element1, element2):
     """
     compare number in str format correctley
     """
+    if element1 > element2:
+        return 1 
+    elif element1 == element2:
+        return 0 
+    else:
+        return -1
     try:
         return cmp(int(element1), int(element2))
     except ValueError:
@@ -25,7 +31,7 @@ def qid_to_key(value_list, sep=';'):
     return sep.join(value_list)
 
 
-def list_to_str(value_list, cmpfun=cmp, sep=';'):
+def list_to_str(value_list, cmpfun=cmp_str, sep=';'):
     """covert sorted str list (sorted by cmpfun) to str
     value (splited by sep). This fuction is value safe, which means
     value_list will not be changed.

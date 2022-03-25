@@ -25,21 +25,26 @@ def extend_result(val):
     return val
 
 
-def write_to_file(result):
+def write_to_file(result, data):
     """
     write the anonymized result to anonymized.data
     """
     with open("anonymized.data", "w") as output:
         for r in result:
             output.write(';'.join(map(extend_result, r)) + '\n')
+    
+    with open("data_given.data", "w") as output:
+        for r in data:
+            output.write(';'.join(map(extend_result, r)) + '\n')
 
 
-def get_result_one(att_trees, data, type_alg, k=10):
+def get_result_one(att_trees, data, type_alg, k=4):
     "run clustering_based_k_anon for one time, with k=10"
     print("K=%d" % k)
+    print("HERE WHERE THE FILE WILL BE WRTIIEN")
     data_back = copy.deepcopy(data)
     result, eval_result = clustering_based_k_anon(att_trees, data, type_alg, k)
-    write_to_file(result)
+    write_to_file(result, data)
     data = copy.deepcopy(data_back)
     print("NCP %0.2f" % eval_result[0] + "%")
     print("Running time %0.2f" % eval_result[1] + "seconds")
@@ -97,29 +102,25 @@ if __name__ == '__main__':
     ATT_TREES = read_adult_tree()
     TYPE_ALG = 'oka'
     FLAG = ''
-    try:
-        FLAG = sys.argv[1]
-    except IndexError:
-        pass
-
-    if FLAG == 'k':
-        get_result_k(ATT_TREES, DATA, TYPE_ALG)
-    elif FLAG == 'n':
-        get_result_n(ATT_TREES, DATA, TYPE_ALG)
-    elif FLAG == '':
-        if __DEBUG:
-            cProfile.run('get_result_one(ATT_TREES, DATA, TYPE_ALG)')
-        else:
-            get_result_one(ATT_TREES, DATA, TYPE_ALG)
-    else:
-        try:
-            INPUT_K = int(FLAG)
-            get_result_one(ATT_TREES, DATA, TYPE_ALG, INPUT_K)
-        except ValueError:
-            print("Usage: python anonymizer [k | n] number of iterations")
-            print("k: varying k")
-            print("example: python anonymizer.py 200")
-            print("example: python anonymizer.py n 10")
+    get_result_one(ATT_TREES, DATA, TYPE_ALG, 4)
+    # if FLAG == 'k':
+    #     get_result_k(ATT_TREES, DATA, TYPE_ALG)
+    # elif FLAG == 'n':
+    #     get_result_n(ATT_TREES, DATA, TYPE_ALG)
+    # elif FLAG == '':
+    #     if __DEBUG:
+    #         cProfile.run('get_result_one(ATT_TREES, DATA, TYPE_ALG)')
+    #     else:
+    #         get_result_one(ATT_TREES, DATA, TYPE_ALG)
+    # else:
+    #     try:
+    #         INPUT_K = int(FLAG)
+    #         get_result_one(ATT_TREES, DATA, TYPE_ALG, INPUT_K)
+    #     except ValueError:
+    #         print("Usage: python anonymizer [k | n] number of iterations")
+    #         print("k: varying k")
+    #         print("example: python anonymizer.py 200")
+    #         print("example: python anonymizer.py n 10")
     # anonymized dataset is stored in result
     print('Anonymized data is stored at result/anonymized.data.')
     print("Finish Cluster based K-Anon!!")
